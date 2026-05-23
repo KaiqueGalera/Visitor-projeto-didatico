@@ -19,6 +19,6 @@ public class Eletronico implements Produto {
 
     @Override
     public double calculateImposto() {
-        return price * 0.5;
+        return price * 0.35;
     }
 }

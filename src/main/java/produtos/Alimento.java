@@ -19,6 +19,6 @@ public class Alimento implements Produto{
 
     @Override
     public double calculateImposto() {
-        return price * 0.25;
+        return price * 0.2;
     }
 }
