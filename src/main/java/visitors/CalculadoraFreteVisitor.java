@@ -1,6 +1,6 @@
 package visitors;
 
-import elements.Alcoolicos;
+import elements.Alcoolico;
 import elements.Alimento;
 import elements.Eletronico;
 import elements.Livro;
@@ -26,8 +26,8 @@ public class CalculadoraFreteVisitor implements Visitor {
     }
 
     @Override
-    public void visit(Alcoolicos alcoolicos) {
-        double imposto = alcoolicos.getPrice() * 0.5;
+    public void visit(Alcoolico alcoolico) {
+        double imposto = alcoolico.getPrice() * 0.5;
         System.out.println("Alimentos: 59% de impostos = " + imposto);
     }
 
