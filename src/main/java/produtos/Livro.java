@@ -1,6 +1,6 @@
 package produtos;
 
-public class Livro {
+public class Livro implements Produto {
     private double price;
     private String name;
 
@@ -16,5 +16,10 @@ public class Livro {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public double calculateImposto() {
+        return price * 0.1;
     }
 }

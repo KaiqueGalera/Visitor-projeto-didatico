@@ -1,6 +1,6 @@
 package produtos;
 
-public class Alimento {
+public class Alimento implements Produto{
     private final double price;
     private final String name;
 
@@ -15,5 +15,10 @@ public class Alimento {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public double calculateImposto() {
+        return price * 0.25;
     }
 }
