@@ -3,7 +3,6 @@ package visitors;
 import elements.Alcoolico;
 import elements.Alimento;
 import elements.Eletronico;
-import elements.Livro;
 
 public class CalculadoraImpostoVisitor implements Visitor{
     @Override
