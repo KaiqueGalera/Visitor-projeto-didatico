@@ -1,19 +1,12 @@
-package elements;
+package produtos;
 
-import visitors.Visitor;
-
-public class Alimento implements Produto{
+public class Eletronico  {
     private final double price;
     private final String name;
 
-    public Alimento(double price, String name) {
+    public Eletronico(double price, String name) {
         this.price = price;
         this.name = name;
-    }
-
-    @Override
-    public void aceitar(Visitor visitor) {
-        visitor.visit(this);
     }
 
     public double getPrice() {

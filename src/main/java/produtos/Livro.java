@@ -1,11 +1,6 @@
-package elements;
+package produtos;
 
-import visitors.Visitor;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-public class Livro implements Produto {
+public class Livro {
     private double price;
     private String name;
 
@@ -14,10 +9,7 @@ public class Livro implements Produto {
         this.name = name;
     }
 
-    @Override
-    public void aceitar(Visitor visitor) {
-        visitor.visit(this);
-    }
+
     public double getPrice() {
         return price;
     }
