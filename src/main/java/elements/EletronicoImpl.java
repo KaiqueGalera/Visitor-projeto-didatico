@@ -1,18 +1,18 @@
 package elements;
 
-import visitors.Visitor;
+import visitors.VisitorI;
 
-public class Alcoolico implements Produto {
+public class EletronicoImpl implements ProdutoI {
     private final double price;
     private final String name;
 
-    public Alcoolico(double price, String name) {
+    public EletronicoImpl(double price, String name) {
         this.price = price;
         this.name = name;
     }
 
     @Override
-    public void aceitar(Visitor visitor) {
+    public void aceitar(VisitorI visitor) {
         visitor.visit(this);
     }
 

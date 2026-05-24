@@ -1,24 +1,24 @@
 package visitors;
 
-import elements.Alcoolico;
-import elements.Alimento;
-import elements.Eletronico;
+import elements.AlcoolicoImpl;
+import elements.AlimentoImpl;
+import elements.EletronicoImpl;
 
-public class CalculadoraImpostoVisitor implements Visitor{
+public class CalculadoraImpostoVisitorImpl implements VisitorI {
     @Override
-    public void visit(Alimento alimento) {
+    public void visit(AlimentoImpl alimento) {
         double imposto = alimento.getPrice() * 0.2;
         System.out.println("Valor do imposto no preço dos produtos alimenticios = " + imposto);
     }
 
     @Override
-    public void visit(Eletronico eletronico) {
+    public void visit(EletronicoImpl eletronico) {
         double imposto = eletronico.getPrice() * 0.35;
         System.out.println("Valor do imposto no preço dos produtos eletronicos = " + imposto);
     }
 
     @Override
-    public void visit(Alcoolico alcoolico) {
+    public void visit(AlcoolicoImpl alcoolico) {
         double imposto = alcoolico.getPrice() * 0.5;
         System.out.println("Valor do imposto no preço dos produtos alcoolicos = " + imposto);
     }

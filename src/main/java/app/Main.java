@@ -1,18 +1,18 @@
 package app;
 
-import elements.Alimento;
-import elements.Eletronico;
-import elements.Produto;
-import visitors.CalculadoraImpostoVisitor;
-import visitors.Visitor;
+import elements.AlimentoImpl;
+import elements.EletronicoImpl;
+import elements.ProdutoI;
+import visitors.CalculadoraImpostoVisitorImpl;
+import visitors.VisitorI;
 
 
 public class Main {
     public static void main(String[] args) {
-        Produto arroz = new Alimento(100, "Arroz");
-        Produto notebook = new Eletronico(5000, "notebook");
+        ProdutoI arroz = new AlimentoImpl(100, "Arroz");
+        ProdutoI notebook = new EletronicoImpl(5000, "notebook");
 
-        Visitor imposto = new CalculadoraImpostoVisitor();
+        VisitorI imposto = new CalculadoraImpostoVisitorImpl();
 
         arroz.aceitar(imposto);
         notebook.aceitar(imposto);

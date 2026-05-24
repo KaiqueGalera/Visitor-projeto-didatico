@@ -1,24 +1,24 @@
 package visitors;
 
-import elements.Alcoolico;
-import elements.Alimento;
-import elements.Eletronico;
+import elements.AlcoolicoImpl;
+import elements.AlimentoImpl;
+import elements.EletronicoImpl;
 
-public class CalculadoraFreteVisitor implements Visitor {
+public class CalculadoraFreteVisitorImpl implements VisitorI {
     @Override
-    public void visit(Alimento alimento) {
+    public void visit(AlimentoImpl alimento) {
         double frete = 20;
         System.out.println("Valor do frete para alimentos = " + frete);
     }
 
     @Override
-    public void visit(Eletronico eletronico) {
+    public void visit(EletronicoImpl eletronico) {
         double frete = 50;
         System.out.println("Valor do frete para eletronicos = " + frete);
     }
 
     @Override
-    public void visit(Alcoolico alcoolico) {
+    public void visit(AlcoolicoImpl alcoolico) {
         double frete = 15;
         System.out.println("Valor do frete para alcoolicos = " + frete);
     }
