@@ -1,5 +1,5 @@
 package produtos;
 
-public interface Produto {
+public interface ProdutoI {
     double calculateImposto();
 }

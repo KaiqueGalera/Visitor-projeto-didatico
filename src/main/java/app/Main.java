@@ -2,11 +2,11 @@ package app;
 
 
 import produtos.Eletronico;
-import produtos.Produto;
+import produtos.ProdutoI;
 
 public class Main {
     public static void main(String[] args) {
-        Produto smartwatch = new Eletronico(299, "smartwatch");
+        ProdutoI smartwatch = new Eletronico(299, "smartwatch");
 
         System.out.println(smartwatch.calculateImposto());
         }

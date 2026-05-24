@@ -1,6 +1,6 @@
 package produtos;
 
-public class Alimento implements Produto{
+public class Alimento implements ProdutoI {
     private final double price;
     private final String name;
 
