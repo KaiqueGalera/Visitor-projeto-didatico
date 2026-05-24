@@ -1,10 +1,10 @@
-package produtos;
+package pessoas;
 
-public class Alcoolico implements Produto {
+public class CariocaLocal implements Pessoa {
     private final double price;
     private final String name;
 
-    public Alcoolico(double price, String name) {
+    public CariocaLocal(double price, String name) {
         this.price = price;
         this.name = name;
     }
@@ -19,6 +19,6 @@ public class Alcoolico implements Produto {
 
     @Override
     public double calculateImposto() {
-        return  price * 0.5;
+        return price * 0.2;
     }
 }

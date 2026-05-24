@@ -1,10 +1,10 @@
-package produtos;
+package pessoas;
 
-public class Eletronico implements Produto {
+public class Gringo implements Pessoa {
     private final double price;
     private final String name;
 
-    public Eletronico(double price, String name) {
+    public Gringo(double price, String name) {
         this.price = price;
         this.name = name;
     }
@@ -19,6 +19,6 @@ public class Eletronico implements Produto {
 
     @Override
     public double calculateImposto() {
-        return price * 0.35;
+        return  price * 0.5;
     }
 }
