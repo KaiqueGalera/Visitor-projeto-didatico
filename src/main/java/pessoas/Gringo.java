@@ -1,6 +1,8 @@
 package pessoas;
 
-public class Gringo implements Pessoa {
+import visitante.VisitanteI;
+
+public class Gringo implements PessoaI {
     private final double price;
     private final String name;
 
@@ -17,8 +19,9 @@ public class Gringo implements Pessoa {
         return name;
     }
 
+
     @Override
-    public double calculateImposto() {
-        return  price * 0.5;
+    public void aceitarVisitante(VisitanteI v) {
+        v.visita(this);
     }
 }

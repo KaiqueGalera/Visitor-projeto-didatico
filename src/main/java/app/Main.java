@@ -2,11 +2,11 @@ package app;
 
 
 import pessoas.TuristaBrasileiro;
-import pessoas.Pessoa;
+import pessoas.PessoaI;
 
 public class Main {
     public static void main(String[] args) {
-        Pessoa smartwatch = new TuristaBrasileiro(299, "smartwatch");
+        PessoaI smartwatch = new TuristaBrasileiro(299, "smartwatch");
 
         System.out.println(smartwatch.calculateImposto());
         }

@@ -4,7 +4,7 @@ import pessoas.CariocaLocal;
 import pessoas.Gringo;
 import pessoas.TuristaBrasileiro;
 
-public class VendedorMateVisitante implements Visitante{
+public class VendedorMateVisitanteImpl implements VisitanteI {
     @Override
     public void visita(Gringo p) {
         System.out.println("Pra você consigo fazer por 30, chefe");

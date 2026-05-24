@@ -1,6 +1,8 @@
 package pessoas;
 
-public class CariocaLocal implements Pessoa {
+import visitante.VisitanteI;
+
+public class CariocaLocal implements PessoaI {
     private final double price;
     private final String name;
 
@@ -17,8 +19,9 @@ public class CariocaLocal implements Pessoa {
         return name;
     }
 
+
     @Override
-    public double calculateImposto() {
-        return price * 0.2;
+    public void aceitarVisitante(VisitanteI v) {
+        v.visita(this);
     }
 }
