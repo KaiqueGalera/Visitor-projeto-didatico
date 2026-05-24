@@ -2,11 +2,11 @@ package elements;
 
 import visitors.VisitorI;
 
-public class AlimentoImpl implements ProdutoI {
+public class Alcoolico implements ProdutoI {
     private final double price;
     private final String name;
 
-    public AlimentoImpl(double price, String name) {
+    public Alcoolico(double price, String name) {
         this.price = price;
         this.name = name;
     }

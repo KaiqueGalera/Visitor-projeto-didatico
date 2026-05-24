@@ -1,24 +1,24 @@
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
 public class DescontoVisitorImpl implements VisitorI {
     @Override
-    public void visit(AlimentoImpl alimento) {
+    public void visit(Alimento alimento) {
         double desconto = alimento.getPrice() * 0.35;
         System.out.println("Valor do desconto para produtos alimenticios = " + desconto);
     }
 
     @Override
-    public void visit(AlcoolicoImpl alcoolico) {
+    public void visit(Alcoolico alcoolico) {
         double desconto = alcoolico.getPrice() * 0.1;
         System.out.println("Valor do desconto para produtos alcoolicos = " + desconto);
     }
 
     @Override
-    public void visit(EletronicoImpl eletronico) {
+    public void visit(Eletronico eletronico) {
         double desconto = eletronico.getPrice() * 0.1;
         System.out.println("Valor do desconto para produtos eletronicos = " + desconto);
     }

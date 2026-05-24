@@ -1,11 +1,11 @@
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
 public interface VisitorI {
-    void visit (AlimentoImpl alimento);
-    void visit (AlcoolicoImpl alcoolico);
-    void visit (EletronicoImpl eletronico);
+    void visit (Alimento alimento);
+    void visit (Alcoolico alcoolico);
+    void visit (Eletronico eletronico);
 }
