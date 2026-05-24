@@ -2,11 +2,11 @@ package pessoas;
 
 import visitante.VisitanteI;
 
-public class TuristaBrasileiro implements PessoaI {
+public class TuristaBrasileiroImpl implements PessoaI {
     private final double price;
     private final String name;
 
-    public TuristaBrasileiro(double price, String name) {
+    public TuristaBrasileiroImpl(double price, String name) {
         this.price = price;
         this.name = name;
     }

@@ -2,11 +2,11 @@ package pessoas;
 
 import visitante.VisitanteI;
 
-public class CariocaLocal implements PessoaI {
+public class GringoImpl implements PessoaI {
     private final double price;
     private final String name;
 
-    public CariocaLocal(double price, String name) {
+    public GringoImpl(double price, String name) {
         this.price = price;
         this.name = name;
     }

@@ -1,11 +1,11 @@
 package visitante;
 
-import pessoas.CariocaLocal;
-import pessoas.Gringo;
-import pessoas.TuristaBrasileiro;
+import pessoas.CariocaLocalImpl;
+import pessoas.GringoImpl;
+import pessoas.TuristaBrasileiroImpl;
 
 public interface VisitanteI {
-    void visita (Gringo p);
-    void visita (TuristaBrasileiro p);
-    void visita (CariocaLocal p);
+    void visita (GringoImpl p);
+    void visita (TuristaBrasileiroImpl p);
+    void visita (CariocaLocalImpl p);
 }
