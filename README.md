@@ -14,7 +14,7 @@ Este repositório possui **quatro branches**:
 | `produto_ex_errado` | Código **incompleto e problemático**, ponto de partida da refatoração em sala |
 | `produto_ex_completo_correto` | Código **corrigido e completo** com o padrão Visitor aplicado corretamente |
 | `produto_ex_incompleto` | Código **incompleto** com o padrão Visitor não aplicado |
-| `projeto_didatico_visitor_vendedor_mate` | Código **corrigido e completo** com o padrão Visitor aplicado corretamente do exemplo vendedor de mate apresentado na reunião |
+| `projeto_didatico_visitor_vendedor_mate` | Código **corrigido e completo** do exemplo do Vendedor de Mate apresentado no seminário |
 
 O objetivo é que, durante a aula, a turma refatore o código da `produto_ex_errado` **passo a passo** até chegar
 na estrutura presente na branch `produto_ex_completo_correto`.
@@ -86,32 +86,31 @@ public interface ProdutoI {
 Para cada classe (`Alcoolico`, `Alimento`, `Eletronico`), faça o seguinte:
 
 - Mova a classe para o pacote `elements`
-- Renomeie para `AlcoolicoImpl`, `AlimentoImpl`, `EletronicoImpl`
-- Implemente a nova interface `ProdutoI`
+- Atualize a declaração para implementar a nova interface `ProdutoI`
 - **Remova** o método `calculateImposto()`
 - **Adicione** o método `aceitar(VisitorI visitor)` chamando `visitor.visit(this)`
 
-Exemplo completo para `AlimentoImpl`:
+Exemplo completo para `Alimento`:
 
 ```java
-// elements/AlimentoImpl.java
+// elements/Alimento.java
 package elements;
 
 import visitors.VisitorI;
 
-public class AlimentoImpl implements ProdutoI {
+public class Alimento implements ProdutoI {
 
     private final double price;
     private final String name;
 
-    public AlimentoImpl(double price, String name) {
+    public Alimento(double price, String name) {
         this.price = price;
         this.name = name;
     }
 
     @Override
     public void aceitar(VisitorI visitor) {
-        visitor.visit(this); // Double Dispatch: resolve visit(AlimentoImpl)
+        visitor.visit(this); // Double Dispatch: resolve visit(Alimento)
     }
 
     public double getPrice() { return price; }
@@ -119,7 +118,7 @@ public class AlimentoImpl implements ProdutoI {
 }
 ```
 
-Repita o mesmo processo para `AlcoolicoImpl` e `EletronicoImpl`, alterando apenas o nome da classe.
+Repita o mesmo processo para `Alcoolico` e `Eletronico`, alterando apenas o nome da classe.
 
 ---
 
@@ -132,14 +131,14 @@ Esse é o contrato que todo Visitor concreto deve implementar.
 // visitors/VisitorI.java
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
 public interface VisitorI {
-    void visit(AlimentoImpl  alimento);
-    void visit(AlcoolicoImpl alcoolico);
-    void visit(EletronicoImpl eletronico);
+    void visit(Alimento  alimento);
+    void visit(Alcoolico alcoolico);
+    void visit(Eletronico eletronico);
 }
 ```
 
@@ -149,93 +148,93 @@ public interface VisitorI {
 
 Cada operação de negócio vira uma classe Visitor separada. Crie as três abaixo no pacote `visitors`.
 
-**CalculadoraImpostoVisitorImpl** — calcula o imposto por tipo de produto:
+**CalculadoraImpostoVisitor** — calcula o imposto por tipo de produto:
 
 ```java
-// visitors/CalculadoraImpostoVisitorImpl.java
+// visitors/CalculadoraImpostoVisitor.java
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
-public class CalculadoraImpostoVisitorImpl implements VisitorI {
+public class CalculadoraImpostoVisitor implements VisitorI {
 
     @Override
-    public void visit(AlimentoImpl alimento) {
+    public void visit(Alimento alimento) {
         double imposto = alimento.getPrice() * 0.2;
         System.out.println("Imposto (alimento) = " + imposto);
     }
 
     @Override
-    public void visit(EletronicoImpl eletronico) {
+    public void visit(Eletronico eletronico) {
         double imposto = eletronico.getPrice() * 0.35;
         System.out.println("Imposto (eletronico) = " + imposto);
     }
 
     @Override
-    public void visit(AlcoolicoImpl alcoolico) {
+    public void visit(Alcoolico alcoolico) {
         double imposto = alcoolico.getPrice() * 0.5;
         System.out.println("Imposto (alcoolico) = " + imposto);
     }
 }
 ```
 
-**CalculadoraFreteVisitorImpl** — calcula o frete por tipo de produto:
+**CalculadoraFreteVisitor** — calcula o frete por tipo de produto:
 
 ```java
-// visitors/CalculadoraFreteVisitorImpl.java
+// visitors/CalculadoraFreteVisitor.java
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
-public class CalculadoraFreteVisitorImpl implements VisitorI {
+public class CalculadoraFreteVisitor implements VisitorI {
 
     @Override
-    public void visit(AlimentoImpl alimento) {
+    public void visit(Alimento alimento) {
         System.out.println("Frete (alimento) = R$ 20,00");
     }
 
     @Override
-    public void visit(EletronicoImpl eletronico) {
+    public void visit(Eletronico eletronico) {
         System.out.println("Frete (eletronico) = R$ 50,00");
     }
 
     @Override
-    public void visit(AlcoolicoImpl alcoolico) {
+    public void visit(Alcoolico alcoolico) {
         System.out.println("Frete (alcoolico) = R$ 15,00");
     }
 }
 ```
 
-**DescontoVisitorImpl** — calcula o desconto por tipo de produto:
+**DescontoVisitor** — calcula o desconto por tipo de produto:
 
 ```java
-// visitors/DescontoVisitorImpl.java
+// visitors/DescontoVisitor.java
 package visitors;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 
-public class DescontoVisitorImpl implements VisitorI {
+public class DescontoVisitor implements VisitorI {
 
     @Override
-    public void visit(AlimentoImpl alimento) {
+    public void visit(Alimento alimento) {
         double desconto = alimento.getPrice() * 0.35;
         System.out.println("Desconto (alimento) = " + desconto);
     }
 
     @Override
-    public void visit(AlcoolicoImpl alcoolico) {
+    public void visit(Alcoolico alcoolico) {
         double desconto = alcoolico.getPrice() * 0.1;
         System.out.println("Desconto (alcoolico) = " + desconto);
     }
 
     @Override
-    public void visit(EletronicoImpl eletronico) {
+    public void visit(Eletronico eletronico) {
         double desconto = eletronico.getPrice() * 0.1;
         System.out.println("Desconto (eletronico) = " + desconto);
     }
@@ -253,13 +252,13 @@ Observe que a mesma lista de produtos recebe três Visitors distintos sem nenhum
 // app/Main.java
 package app;
 
-import elements.AlcoolicoImpl;
-import elements.AlimentoImpl;
-import elements.EletronicoImpl;
+import elements.Alcoolico;
+import elements.Alimento;
+import elements.Eletronico;
 import elements.ProdutoI;
-import visitors.CalculadoraFreteVisitorImpl;
-import visitors.CalculadoraImpostoVisitorImpl;
-import visitors.DescontoVisitorImpl;
+import visitors.CalculadoraFreteVisitor;
+import visitors.CalculadoraImpostoVisitor;
+import visitors.DescontoVisitor;
 
 import java.util.List;
 
@@ -267,19 +266,19 @@ public class Main {
     public static void main(String[] args) {
 
         List<ProdutoI> produtos = List.of(
-            new AlimentoImpl(50.0,  "Arroz"),
-            new EletronicoImpl(299.0, "Smartwatch"),
-            new AlcoolicoImpl(35.0, "Cerveja")
+            new Alimento(50.0, "Arroz"),
+            new Eletronico(299.0, "Smartwatch"),
+            new Alcoolico(35.0, "Cerveja")
         );
 
         System.out.println("=== Impostos ===");
-        produtos.forEach(p -> p.aceitar(new CalculadoraImpostoVisitorImpl()));
+        produtos.forEach(p -> p.aceitar(new CalculadoraImpostoVisitor()));
 
         System.out.println("\n=== Fretes ===");
-        produtos.forEach(p -> p.aceitar(new CalculadoraFreteVisitorImpl()));
+        produtos.forEach(p -> p.aceitar(new CalculadoraFreteVisitor()));
 
         System.out.println("\n=== Descontos ===");
-        produtos.forEach(p -> p.aceitar(new DescontoVisitorImpl()));
+        produtos.forEach(p -> p.aceitar(new DescontoVisitor()));
     }
 }
 ```
@@ -301,14 +300,14 @@ src/main/java/
 │   └── Main.java
 ├── elements/
 │   ├── ProdutoI.java
-│   ├── AlimentoImpl.java
-│   ├── AlcoolicoImpl.java
-│   └── EletronicoImpl.java
+│   ├── Alimento.java
+│   ├── Alcoolico.java
+│   └── Eletronico.java
 └── visitors/
     ├── VisitorI.java
-    ├── CalculadoraImpostoVisitorImpl.java
-    ├── CalculadoraFreteVisitorImpl.java
-    └── DescontoVisitorImpl.java
+    ├── CalculadoraImpostoVisitor.java
+    ├── CalculadoraFreteVisitor.java
+    └── DescontoVisitor.java
 ```
 
 ---
@@ -317,8 +316,8 @@ src/main/java/
 
 | Antes | Depois |
 |---|---|
-| `calculateImposto()` dentro de cada produto | Lógica fiscal isolada em `CalculadoraImpostoVisitorImpl` |
-| Adicionar frete exigia modificar todas as classes | Basta criar `CalculadoraFreteVisitorImpl` |
+| `calculateImposto()` dentro de cada produto | Lógica fiscal isolada em `CalculadoraImpostoVisitor` |
+| Adicionar frete exigia modificar todas as classes | Basta criar `CalculadoraFreteVisitor` |
 | Interface `ProdutoI` misturava dados e operação | Interface `ProdutoI` declara apenas `aceitar` |
 | Violação de SRP e OCP | SRP e OCP satisfeitos |
 
